@@ -1,0 +1,7 @@
+math:
+  name: Math
+  description: All about number
+
+english:
+  name: English
+  description: Language that everyone knows
