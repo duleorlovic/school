@@ -1,24 +1,29 @@
-# README
+# School Rails App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is Rails app for the task
 
-Things you may want to cover:
+> I want you to create a project from scratch. We want to represent a school, so there are teachers, classes, classrooms, and students. Students have many classes, teachers have many classes, and a classroom has many classes. I want to be able to edit, add, and remove teachers, students, and classes.
 
-* Ruby version
+> I know these are very basic requirements, but please use your best judgement if anything is confusing. Feel free to use rails scaffolds to build this representation quickly, the front end can be simple and server rendered. Don’t include anything you don’t need, like devise, pundit, or sidekiq for now. I want to see how you build your models and controllers, and I want to see your best work. We will extend the functionality of this in our next interview. And please don’t spend more than 4 hours, if you cannot finish it in this time that’s ok.
 
-* System dependencies
 
-* Configuration
+# Development
 
-* Database creation
+Standard Rails commands
 
-* Database initialization
+```
+rails db:setup
+rails s
+```
 
-* How to run the test suite
+Run tests
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+rails test
+```
 
-* Deployment instructions
+Run system tests in browser
 
-* ...
+```
+rails test:system
+```

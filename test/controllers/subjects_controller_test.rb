@@ -46,14 +46,23 @@ class SubjectsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to subjects_url
   end
 
-  test 'should clear teachers' do
+  test 'should add teachers on create' do
+    english_teacher = teachers(:english_teacher)
+    post subjects_url, params: {subject: {description: @subject.description, name: @subject.name, teacher_ids: [english_teacher.id]}}
+    subject = Subject.last
+    assert_redirected_to subject_url(subject)
+    assert_equal 1, subject.teachers.size
+    assert_equal english_teacher, subject.teachers.last
+  end
+
+  test 'should clear teachers on update' do
     refute_equal 0, @subject.teachers.size
     patch subject_url(@subject), params: {subject: {teacher_ids: []}}
     assert_redirected_to subject_url(@subject)
     assert_equal 0, @subject.teachers.size
   end
 
-  test 'should update teachers' do
+  test 'should update teachers on update' do
     math_subject = subjects(:math)
     english_teacher = teachers(:english_teacher)
     patch subject_url(math_subject), params: {subject: {teacher_ids: [english_teacher.id]}}

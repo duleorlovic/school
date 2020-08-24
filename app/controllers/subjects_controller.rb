@@ -22,7 +22,7 @@ class SubjectsController < ApplicationController
   # POST /subjects
   # POST /subjects.json
   def create
-    @subject = Subject.new(subject_params)
+    @subject = Subject.new(subject_params.merge(teacher_subjects_params))
 
     respond_to do |format|
       if @subject.save
@@ -74,7 +74,7 @@ class SubjectsController < ApplicationController
   def teacher_subjects_params
     return {} if params[:subject][:teacher_ids].nil?
 
-    @subject.teacher_subjects.each(&:mark_for_destruction)
+    @subject.teacher_subjects.each(&:mark_for_destruction) if @subject.present?
     {
       teacher_subjects_attributes: params[:subject][:teacher_ids].reject(&:empty?).map { |id| {teacher_id: id} }
     }

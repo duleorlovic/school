@@ -10,14 +10,15 @@
   <%= @teacher.last_name %>
 </p>
 
+<%= link_to 'Edit', edit_teacher_path(@teacher) %> |
+<%= link_to 'Back', teachers_path %>
+
 <p>
   <strong>Classes</strong>
   <ul>
     <% @teacher.teacher_subjects.each do |teacher_subject| %>
-      <li><%= link_to teacher_subject.subject.name, subject_path(teacher_subject.subject) %> (<%= teacher_subject.level %>)</li>
+      <%= render 'teacher_subjects/show', teacher_subject: teacher_subject %>
     <% end %>
   </ul>
+  <%= render 'teacher_subjects/new' %>
 </p>
-
-<%= link_to 'Edit', edit_teacher_path(@teacher) %> |
-<%= link_to 'Back', teachers_path %>

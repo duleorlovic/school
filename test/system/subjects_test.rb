@@ -2,7 +2,7 @@ require 'application_system_test_case'
 
 class SubjectsTest < ApplicationSystemTestCase
   setup do
-    @subject = subjects(:one)
+    @subject = subjects(:math)
   end
 
   test 'visiting the index' do
@@ -12,7 +12,7 @@ class SubjectsTest < ApplicationSystemTestCase
 
   test 'creating a Subject' do
     visit subjects_url
-    click_on 'New Subject'
+    click_on 'New Class'
 
     fill_in 'Description', with: @subject.description
     fill_in 'Name', with: @subject.name

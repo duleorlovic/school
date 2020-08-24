@@ -4,10 +4,7 @@ class TeacherSubject < ApplicationRecord
   belongs_to :teacher
   belongs_to :subject
 
-  # This validation does not work well when we update subject with
-  # teacher_subjects_attributes since it ignores that we mark_for_destruction
-  # so keep this validation logic only in database as uniq index
-  # validates :teacher, uniqueness: {scope: :subject}
+  validates :teacher, uniqueness: {scope: :subject}, if: :_not_marked_for_destruction?
 
   validates :level, presence: true
   before_validation :_default_values_on_create, on: :create
@@ -16,5 +13,11 @@ class TeacherSubject < ApplicationRecord
     self.level ||= DEFAULT_LEVEL
     # return value should be true or nil
     true
+  end
+
+  def _not_marked_for_destruction?
+    # Rails validation does not work well when we update subject with
+    # teacher_subjects_attributes when we mark_for_destruction
+    subject.teacher_subjects.none?(&:_destroy)
   end
 end
