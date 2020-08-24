@@ -3,7 +3,7 @@ class CreateTeacherSubjects < ActiveRecord::Migration[6.0]
     create_table :teacher_subjects do |t|
       t.references :teacher, foreign_key: true, null: false
       t.references :subject, foreign_key: true, null: false
-      t.integer :level
+      t.integer :level, null: false
 
       t.timestamps
     end

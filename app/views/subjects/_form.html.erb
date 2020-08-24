@@ -21,6 +21,10 @@
     <%= form.text_area :description %>
   </div>
 
+  <div class='field'>
+    <%= form.select :teacher_ids, options_from_collection_for_select(Teacher.all, :id, :first_and_last_name, -> (teacher) { @subject.teacher_subjects.map(&:teacher_id).include? teacher.id }), {}, multiple: true %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

@@ -39,7 +39,7 @@ class SubjectsController < ApplicationController
   # PATCH/PUT /subjects/1.json
   def update
     respond_to do |format|
-      if @subject.update(subject_params)
+      if @subject.update(subject_params.merge(teacher_subjects_params))
         format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
         format.json { render :show, status: :ok, location: @subject }
       else
@@ -69,5 +69,14 @@ class SubjectsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def subject_params
     params.require(:subject).permit(:name, :description)
+  end
+
+  def teacher_subjects_params
+    return {} if params[:subject][:teacher_ids].nil?
+
+    @subject.teacher_subjects.each(&:mark_for_destruction)
+    {
+      teacher_subjects_attributes: params[:subject][:teacher_ids].reject(&:empty?).map { |id| {teacher_id: id} }
+    }
   end
 end
