@@ -1,5 +1,5 @@
 class TeachersController < ApplicationController
-  before_action :set_teacher, only: [:show, :edit, :update, :destroy]
+  before_action :set_teacher, only: %i[show edit update destroy]
 
   # GET /teachers
   # GET /teachers.json
@@ -9,8 +9,7 @@ class TeachersController < ApplicationController
 
   # GET /teachers/1
   # GET /teachers/1.json
-  def show
-  end
+  def show; end
 
   # GET /teachers/new
   def new
@@ -18,8 +17,7 @@ class TeachersController < ApplicationController
   end
 
   # GET /teachers/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /teachers
   # POST /teachers.json
@@ -62,13 +60,14 @@ class TeachersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_teacher
-      @teacher = Teacher.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def teacher_params
-      params.require(:teacher).permit(:first_name, :last_name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_teacher
+    @teacher = Teacher.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def teacher_params
+    params.require(:teacher).permit(:first_name, :last_name)
+  end
 end
