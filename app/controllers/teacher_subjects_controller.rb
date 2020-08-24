@@ -22,6 +22,7 @@ class TeacherSubjectsController < ApplicationController
     @teacher_subject = TeacherSubject.new _teacher_subject_params
     @teacher_subject.teacher = @teacher
     if @teacher_subject.save
+      flash[:notice] = 'Class was successfully added'
     else
       render :new
     end
@@ -29,6 +30,7 @@ class TeacherSubjectsController < ApplicationController
 
   def destroy
     @teacher_subject.destroy!
+    flash[:notice] = 'Class was successfully removed'
   end
 
   private

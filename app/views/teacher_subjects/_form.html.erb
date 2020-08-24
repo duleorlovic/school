@@ -16,7 +16,7 @@
       <%= form.number_field :level %>
 
       <%= form.submit 'Update' %>
-      <%= link_to 'Remove', teacher_subject_path(@teacher_subject), remote: true, method: :delete %>
+      <%= link_to 'Remove', teacher_subject_path(@teacher_subject), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %>
       <%= link_to 'Cancel', teacher_subject_path(@teacher_subject), remote: true %>
     </div>
   <% end %>

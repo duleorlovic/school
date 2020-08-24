@@ -7,39 +7,39 @@ class SubjectsTest < ApplicationSystemTestCase
 
   test 'visiting the index' do
     visit subjects_url
-    assert_selector 'h1', text: 'Subjects'
+    assert_selector 'h1', text: 'Class'
   end
 
-  test 'creating a Subject' do
+  test 'creating a Class' do
     visit subjects_url
     click_on 'New Class'
 
     fill_in 'Description', with: @subject.description
     fill_in 'Name', with: @subject.name
-    click_on 'Create Subject'
+    click_on 'Create Class'
 
-    assert_text 'Subject was successfully created'
+    assert_text 'Class was successfully created'
     click_on 'Back'
   end
 
-  test 'updating a Subject' do
+  test 'updating a Class' do
     visit subjects_url
     click_on 'Edit', match: :first
 
     fill_in 'Description', with: @subject.description
     fill_in 'Name', with: @subject.name
-    click_on 'Update Subject'
+    click_on 'Update Class'
 
-    assert_text 'Subject was successfully updated'
+    assert_text 'Class was successfully updated'
     click_on 'Back'
   end
 
-  test 'destroying a Subject' do
+  test 'destroying a Class' do
     visit subjects_url
     page.accept_confirm do
       click_on 'Destroy', match: :first
     end
 
-    assert_text 'Subject was successfully destroyed'
+    assert_text 'Class was successfully destroyed'
   end
 end

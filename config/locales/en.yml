@@ -31,3 +31,10 @@
 
 en:
   hello: "Hello world"
+en:
+  activerecord:
+    models:
+      subject:
+        zero: Class
+        one: Class
+        other: Classes
